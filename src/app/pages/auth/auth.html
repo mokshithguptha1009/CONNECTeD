@@ -1,0 +1,429 @@
+<div class="auth-page">
+
+    <div class="auth-container" [class.signup-active]="!isLogin">
+
+        <!-- =====================================================
+         LOGIN FORM
+         ===================================================== -->
+
+        <section class="auth-panel login-form-panel">
+
+            <div class="form-content">
+
+                <!-- Mode switch -->
+                <div class="mode-switch">
+
+                    <button type="button" class="mode-button active" (click)="showLogin()">
+                        Sign in
+                    </button>
+
+                    <button type="button" class="mode-button" (click)="showSignup()">
+                        Create account
+                    </button>
+
+                </div>
+
+
+                <!-- Heading -->
+                <div class="form-heading">
+
+                    <span class="eyebrow">
+                        WELCOME BACK
+                    </span>
+
+                    <h1>
+                        Continue your<br>
+                        journey.
+                    </h1>
+
+                    <p>
+                        Sign in to discover opportunities,
+                        events and connections from your college.
+                    </p>
+
+                </div>
+
+
+                <!-- Login form -->
+                <form (ngSubmit)="login()">
+
+                    <div class="field">
+
+                        <label for="loginEmail">
+                            College email
+                        </label>
+
+                        <input id="loginEmail" type="email" name="loginEmail" [(ngModel)]="loginEmail"
+                            placeholder="you@college.edu" autocomplete="email" required>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <div class="field-header">
+
+                            <label for="loginPassword">
+                                Password
+                            </label>
+
+                            <button type="button" class="forgot-button">
+                                Forgot password?
+                            </button>
+
+                        </div>
+
+                        <input id="loginPassword" type="password" name="loginPassword" [(ngModel)]="loginPassword"
+                            placeholder="Enter your password" autocomplete="current-password" required>
+
+                    </div>
+
+
+                    <button type="submit" class="primary-button" [disabled]="loading">
+
+                        <span>
+                            {{ loading ? 'Signing in...' : 'Sign in' }}
+                        </span>
+
+                        <span class="arrow">
+                            →
+                        </span>
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+         LOGIN VISUAL
+         ===================================================== -->
+
+        <section class="auth-panel login-visual-panel">
+
+            <div class="visual-content">
+
+                <!-- Dynamic ConnectED logo -->
+
+                <div class="brand">
+
+                    <div class="brand-mark student-network-logo">
+
+                        <span class="logo-c">
+                            C
+                        </span>
+
+                        <span class="student-node node-1"></span>
+                        <span class="student-node node-2"></span>
+                        <span class="student-node node-3"></span>
+                        <span class="student-node node-4"></span>
+
+                        <span class="connection connection-1"></span>
+                        <span class="connection connection-2"></span>
+                        <span class="connection connection-3"></span>
+
+                    </div>
+
+                    <span class="brand-name">
+                        Connect<span>ED</span>
+                    </span>
+
+                </div>
+
+
+                <!-- Network animation -->
+
+                <div class="network-graphic">
+
+                    <div class="network-ring ring-one"></div>
+                    <div class="network-ring ring-two"></div>
+
+                    <div class="network-line line-one"></div>
+                    <div class="network-line line-two"></div>
+
+                    <div class="network-dot network-dot-one"></div>
+                    <div class="network-dot network-dot-two"></div>
+                    <div class="network-dot network-dot-three"></div>
+
+                    <div class="network-center">
+                        C
+                    </div>
+
+                </div>
+
+
+                <!-- Visual message -->
+
+                <div class="visual-copy">
+
+                    <span class="visual-eyebrow">
+                        YOUR COLLEGE. ONE NETWORK.
+                    </span>
+
+                    <h2>
+                        Opportunities<br>
+                        <span>find you.</span>
+                    </h2>
+
+                    <p>
+                        Hackathons, workshops, internships,
+                        teams and campus opportunities —
+                        all in one place.
+                    </p>
+
+                </div>
+
+
+                <!-- Only one action -->
+
+                <button type="button" class="visual-action" (click)="showSignup()">
+                    Create your student account
+
+                    <span>
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+         SIGNUP VISUAL
+         ===================================================== -->
+
+        <section class="auth-panel signup-visual-panel">
+
+            <div class="visual-content">
+
+                <!-- Dynamic ConnectED logo -->
+
+                <div class="brand">
+
+                    <div class="brand-mark student-network-logo">
+
+                        <span class="logo-c">
+                            C
+                        </span>
+
+                        <span class="student-node node-1"></span>
+                        <span class="student-node node-2"></span>
+                        <span class="student-node node-3"></span>
+                        <span class="student-node node-4"></span>
+
+                        <span class="connection connection-1"></span>
+                        <span class="connection connection-2"></span>
+                        <span class="connection connection-3"></span>
+
+                    </div>
+
+                    <span class="brand-name">
+                        Connect<span>ED</span>
+                    </span>
+
+                </div>
+
+
+                <!-- Verification animation -->
+
+                <div class="verification-graphic">
+
+                    <div class="verification-ring ring-one"></div>
+                    <div class="verification-ring ring-two"></div>
+
+                    <div class="verification-card">
+                        ✓
+                    </div>
+
+                    <div class="scan-line"></div>
+
+                </div>
+
+
+                <!-- Visual message -->
+
+                <div class="visual-copy">
+
+                    <span class="visual-eyebrow">
+                        VERIFIED STUDENT NETWORK
+                    </span>
+
+                    <h2>
+                        One identity.<br>
+                        <span>Every opportunity.</span>
+                    </h2>
+
+                    <p>
+                        Your verified college identity connects
+                        you to the right opportunities and communities.
+                    </p>
+
+                </div>
+
+
+                <!-- Only one action -->
+
+                <button type="button" class="visual-action" (click)="showLogin()">
+                    Already registered? Sign in
+
+                    <span>
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+         SIGNUP FORM
+         ===================================================== -->
+
+        <section class="auth-panel signup-form-panel">
+
+            <div class="form-content">
+
+                <!-- Mode switch -->
+
+                <div class="mode-switch">
+
+                    <button type="button" class="mode-button" (click)="showLogin()">
+                        Sign in
+                    </button>
+
+                    <button type="button" class="mode-button active" (click)="showSignup()">
+                        Create account
+                    </button>
+
+                </div>
+
+
+                <!-- Heading -->
+
+                <div class="form-heading">
+
+                    <span class="eyebrow">
+                        JOIN YOUR COLLEGE
+                    </span>
+
+                    <h1>
+                        Your next<br>
+                        opportunity starts here.
+                    </h1>
+
+                    <p>
+                        Create your account and connect
+                        with your college community.
+                    </p>
+
+                </div>
+
+
+                <!-- Signup form -->
+
+                <form (ngSubmit)="signup()">
+
+                    <div class="field">
+
+                        <label for="signupName">
+                            Full name
+                        </label>
+
+                        <input id="signupName" type="text" name="signupName" [(ngModel)]="signupName"
+                            placeholder="Enter your full name" autocomplete="name" required>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="signupEmail">
+                            College email
+                        </label>
+
+                        <input id="signupEmail" type="email" name="signupEmail" [(ngModel)]="signupEmail"
+                            placeholder="you@college.edu" autocomplete="email" required>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="signupPassword">
+                            Create password
+                        </label>
+
+                        <input id="signupPassword" type="password" name="signupPassword" [(ngModel)]="signupPassword"
+                            placeholder="Minimum 6 characters" autocomplete="new-password" required>
+
+                    </div>
+
+
+                    <!-- Verification information -->
+
+                    <div class="verification-box">
+
+                        <div class="verification-icon">
+                            ✓
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                College verification
+                            </strong>
+
+                            <p>
+                                After signup, verify your college ID
+                                before accessing ConnectED.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Create account -->
+
+                    <button type="submit" class="primary-button" [disabled]="loading">
+
+                        <span>
+                            {{ loading ? 'Creating account...' : 'Create account' }}
+                        </span>
+
+                        <span class="arrow">
+                            →
+                        </span>
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- Error -->
+
+    @if (errorMessage) {
+
+    <div class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    }
+
+</div>
