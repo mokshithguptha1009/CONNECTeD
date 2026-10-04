@@ -1,0 +1,235 @@
+<div class="verification-page">
+
+    <header class="topbar">
+
+        <div class="brand">
+            <div class="brand-mark">C</div>
+            <span>ConnectED</span>
+        </div>
+
+        <button class="back-button" type="button">
+            ← Back
+        </button>
+
+    </header>
+
+
+    <main class="verification-layout">
+
+        <!-- LEFT SIDE -->
+
+        <section class="intro-section">
+
+            <span class="eyebrow">
+                STUDENT VERIFICATION
+            </span>
+
+            <h1>
+                One verification.
+                <span>Endless opportunities.</span>
+            </h1>
+
+            <p class="intro-text">
+                Verify your student identity once and discover
+                opportunities built around your college community.
+            </p>
+
+
+            <div class="benefits">
+
+                <div class="benefit">
+                    <div class="benefit-icon">✓</div>
+
+                    <div>
+                        <strong>Verified student identity</strong>
+                        <p>Keep your ConnectED profile authentic.</p>
+                    </div>
+                </div>
+
+
+                <div class="benefit">
+                    <div class="benefit-icon">◆</div>
+
+                    <div>
+                        <strong>Relevant opportunities</strong>
+                        <p>See events, internships and placements for you.</p>
+                    </div>
+                </div>
+
+
+                <div class="benefit">
+                    <div class="benefit-icon">↗</div>
+
+                    <div>
+                        <strong>One-time verification</strong>
+                        <p>Verify once and focus on what matters.</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="visual-card">
+
+                <div class="visual-glow"></div>
+
+                <div class="network">
+
+                    <div class="network-line line-one"></div>
+                    <div class="network-line line-two"></div>
+                    <div class="network-line line-three"></div>
+
+                    <div class="student student-one">S</div>
+                    <div class="student student-two">S</div>
+                    <div class="student student-three">S</div>
+
+                    <div class="network-center">
+                        C
+                    </div>
+
+                </div>
+
+                <div class="visual-text">
+                    <strong>Your campus. Connected.</strong>
+                    <span>Students · Faculty · Opportunities</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RIGHT SIDE -->
+
+        <section class="form-section">
+
+            <div class="form-header">
+
+                <div class="step-label">
+                    STEP 1 <span>/ 2</span>
+                </div>
+
+                <div class="progress">
+                    <div class="progress-active"></div>
+                </div>
+
+                <h2>Tell us about your college</h2>
+
+                <p>
+                    We'll use this information to connect you
+                    with the right opportunities.
+                </p>
+
+            </div>
+
+
+            <form>
+
+                <div class="field">
+
+                    <label for="college">
+                        College
+                    </label>
+
+                    <div class="select-wrapper">
+
+                        <div class="select-wrapper">
+
+                            <select id="college" name="college" [(ngModel)]="selectedCollege">
+                                <option value="" disabled>
+                                    {{ loadingColleges ? 'Loading colleges...' : 'Select your college' }}
+                                </option>
+
+                                <option *ngFor="let college of colleges" [value]="college.id">
+                                    {{ college.name }} — {{ college.city }}
+                                </option>
+                            </select>
+
+                            <span>⌄</span>
+
+                        </div>
+
+                        <span>⌄</span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="studentId">
+                        Student ID
+                    </label>
+
+                    <input id="studentId" name="studentId" type="text" placeholder="e.g. 22A81A0000"
+                        [(ngModel)]="studentId" /> <small>
+                        Enter the ID exactly as shown on your college ID card.
+                    </small>
+
+                </div>
+
+
+                <div class="field">
+
+                    <div class="upload-heading">
+
+                        <label>
+                            College ID card
+                        </label>
+
+                        <span>
+                            REQUIRED
+                        </span>
+
+                    </div>
+
+
+                    <label class="upload-area" for="idCard">
+
+                        <input id="idCard" type="file" accept=".png,.jpg,.jpeg,.pdf" />
+
+                        <div class="upload-icon">
+                            ↑
+                        </div>
+
+                        <strong>
+                            Drop your ID card here
+                        </strong>
+
+                        <p>
+                            or <span>browse files</span>
+                        </p>
+
+                        <small>
+                            JPG, PNG or PDF · Maximum 5MB
+                        </small>
+
+                    </label>
+
+                </div>
+
+                <p class="error-message" *ngIf="errorMessage">
+                    {{ errorMessage }}
+                </p>
+                <button class="continue-button" type="button" (click)="continueVerification()" [disabled]="loading">
+                    {{ loading ? 'Saving...' : 'Continue' }}
+
+                    <span *ngIf="!loading">
+                        →
+                    </span>
+                </button>
+
+
+                <div class="security-note">
+                    <span>🔒</span>
+                    Your ID is securely used for student verification.
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</div>

@@ -12,10 +12,15 @@ export class AuthService {
         this.supabase = this.supabaseService.getClient();
     }
 
-    async signUp(email: string, password: string) {
+    async signUp(email: string, password: string, name: string) {
         return await this.supabase.auth.signUp({
             email,
-            password
+            password,
+            options: {
+                data: {
+                    name: name
+                }
+            }
         });
     }
 
@@ -33,5 +38,10 @@ export class AuthService {
     async getCurrentUser() {
         const { data } = await this.supabase.auth.getUser();
         return data.user;
+    }
+
+    async isLoggedIn(): Promise<boolean> {
+        const { data } = await this.supabase.auth.getSession();
+        return !!data.session;
     }
 }

@@ -42,58 +42,63 @@ export class Auth {
   async login(): Promise<void> {
 
     if (!this.loginEmail || !this.loginPassword) {
-      this.errorMessage = 'Please enter your email and password.';
-      return;
+        this.errorMessage = 'Please enter your email and password.';
+        return;
     }
 
     this.loading = true;
     this.errorMessage = '';
 
-    const { error } = await this.authService.signIn(
-      this.loginEmail,
-      this.loginPassword
+    const { data, error } = await this.authService.signIn(
+        this.loginEmail,
+        this.loginPassword
     );
 
     this.loading = false;
 
     if (error) {
-      this.errorMessage = error.message;
-      return;
+        this.errorMessage = error.message;
+        console.log('LOGIN ERROR:', error);
+        return;
     }
 
-    // For now we'll send logged-in users to dashboard.
-    // Verification routing will be added next.
-    await this.router.navigate(['/dashboard']);
-  }
+    console.log('LOGIN SUCCESS:', data);
 
+    await this.router.navigate(['/dashboard']);
+}
   async signup(): Promise<void> {
 
-    if (!this.signupName || !this.signupEmail || !this.signupPassword) {
-      this.errorMessage = 'Please fill in all fields.';
-      return;
-    }
-
-    if (this.signupPassword.length < 6) {
-      this.errorMessage = 'Password must contain at least 6 characters.';
-      return;
-    }
-
-    this.loading = true;
-    this.errorMessage = '';
-
-    const { error } = await this.authService.signUp(
-      this.signupEmail,
-      this.signupPassword
-    );
-
-    this.loading = false;
-
-    if (error) {
-      this.errorMessage = error.message;
-      return;
-    }
-
-    // New students will go through verification.
-    await this.router.navigate(['/verification']);
+  if (!this.signupName || !this.signupEmail || !this.signupPassword) {
+    this.errorMessage = 'Please fill in all fields.';
+    return;
   }
+
+  if (this.signupPassword.length < 6) {
+    this.errorMessage = 'Password must contain at least 6 characters.';
+    return;
+  }
+
+  this.loading = true;
+  this.errorMessage = '';
+
+  const { data, error } = await this.authService.signUp(
+    this.signupEmail,
+    this.signupPassword,
+    this.signupName
+  );
+
+  console.log('SIGNUP DATA:', data);
+  console.log('SIGNUP ERROR:', error);
+
+  this.loading = false;
+
+  if (error) {
+    this.errorMessage = error.message;
+    return;
+  }
+
+  console.log('Signup successful. Navigating...');
+
+  await this.router.navigate(['/verification']);
+}
 }
